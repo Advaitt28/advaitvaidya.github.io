@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advait Vaidya - DevOps Engineer</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Advait Vaidya - DevOps Engineer | AWS, Kubernetes, CI/CD Expert</title>
+    <meta name="description" content="Advait Vaidya is a DevOps Engineer with 4 years of experience in AWS, Kubernetes, Docker, CI/CD pipelines, and cloud infrastructure optimization. Based in Pune, India.">
+    <meta name="keywords" content="DevOps Engineer, AWS, Kubernetes, Docker, CI/CD, Jenkins, Terraform, Cloud Infrastructure, Pune, India, Advait Vaidya">
+    <meta name="author" content="Advait Vaidya">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://advaitt28.github.io/advaitvaidya.github.io/">
+    <meta property="og:title" content="Advait Vaidya - DevOps Engineer">
+    <meta property="og:description" content="DevOps Engineer specializing in AWS, Kubernetes, and CI/CD automation. 4 years of experience building scalable cloud infrastructure.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://advaitt28.github.io/advaitvaidya.github.io/">
+    <meta property="twitter:title" content="Advait Vaidya - DevOps Engineer">
+    <meta property="twitter:description" content="DevOps Engineer specializing in AWS, Kubernetes, and CI/CD automation.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23ff6b35'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-weight='bold'>AV</text></svg>">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         * {
             margin: 0;
@@ -23,6 +45,7 @@
             --accent-secondary: #ffa726;
             --accent-glow: rgba(255, 107, 53, 0.3);
             --border: #333;
+            --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         [data-theme="light"] {
@@ -47,6 +70,35 @@
             color: var(--text-primary);
             line-height: 1.7;
             transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float-particle 20s infinite;
+        }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-200px) translateX(-50px); }
+            75% { transform: translateY(-100px) translateX(100px); }
         }
 
         /* Navigation */
@@ -54,11 +106,17 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--bg-secondary);
+            background: rgba(26, 26, 26, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             padding: 1.2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .nav-container {
@@ -72,11 +130,12 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -91,6 +150,22 @@
             font-weight: 500;
             transition: color 0.3s ease;
             font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -108,7 +183,7 @@
         }
 
         .theme-toggle:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(15deg);
             border-color: var(--accent-primary);
         }
 
@@ -117,27 +192,31 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 120px 2rem 4rem;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Hero Section */
+        /* Animated Hero Section */
         .hero {
-            min-height: 80vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 4rem 0;
+            position: relative;
         }
 
         .hero-content h1 {
             font-size: 4.5rem;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
+            animation: fadeInUp 1s ease;
         }
 
         .hero-content .subtitle {
@@ -145,6 +224,7 @@
             color: var(--text-primary);
             margin-bottom: 1rem;
             font-weight: 600;
+            animation: fadeInUp 1.2s ease;
         }
 
         .hero-content .description {
@@ -153,6 +233,76 @@
             max-width: 700px;
             margin: 0 auto 2.5rem;
             line-height: 1.8;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        /* Instagram-style Story Rings */
+        .hero-avatar {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: fadeInScale 1s ease;
+        }
+
+        .avatar-ring {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--instagram-gradient);
+            padding: 4px;
+            animation: rotate 3s linear infinite;
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-content {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .cta-buttons {
@@ -160,6 +310,7 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 1.6s ease;
         }
 
         .btn {
@@ -172,6 +323,26 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
@@ -182,7 +353,7 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 30px var(--accent-glow);
         }
 
@@ -195,6 +366,7 @@
         .btn-secondary:hover {
             border-color: var(--accent-primary);
             color: var(--accent-primary);
+            transform: translateY(-3px);
         }
 
         /* Section */
@@ -212,11 +384,26 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
         }
 
         .section-subtitle {
             font-size: 1.1rem;
             color: var(--text-secondary);
+            margin-top: 1rem;
         }
 
         /* About Section */
@@ -226,6 +413,24 @@
             border-radius: 20px;
             padding: 3rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .about-content:hover::before {
+            opacity: 1;
         }
 
         .about-content p {
@@ -233,17 +438,15 @@
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
 
-        .about-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Skills Grid */
+        /* Dynamic Skills with Progress Bars */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .skill-card {
@@ -269,35 +472,66 @@
             gap: 0.5rem;
         }
 
-        .skill-card h3 span {
-            font-size: 1.5rem;
+        .skill-item {
+            margin-bottom: 1.5rem;
         }
 
-        .skill-tags {
+        .skill-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
         }
 
-        .skill-tag {
+        .skill-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .skill-level {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
             background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .skill-tag:hover {
-            background: var(--accent-primary);
-            color: white;
-            border-color: var(--accent-primary);
-            transform: scale(1.05);
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+            transition: width 1.5s ease;
+            width: 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Experience Timeline */
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .skill-card.visible .skill-progress {
+            width: var(--progress);
+        }
+
+        /* Timeline */
         .timeline {
             position: relative;
             padding-left: 3rem;
@@ -310,7 +544,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: var(--border);
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
         }
 
         .timeline-item {
@@ -329,6 +563,12 @@
             border-radius: 50%;
             background: var(--accent-primary);
             box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px var(--accent-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px var(--accent-primary); }
+            50% { box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 10px var(--accent-primary); }
         }
 
         .timeline-card {
@@ -342,6 +582,7 @@
         .timeline-card:hover {
             border-color: var(--accent-primary);
             box-shadow: 0 8px 30px var(--accent-glow);
+            transform: translateX(10px);
         }
 
         .timeline-date {
@@ -384,27 +625,34 @@
             font-weight: bold;
         }
 
-        /* Certification */
+        /* Instagram-style Certification Badge */
         .cert-container {
             display: flex;
             justify-content: center;
         }
 
         .cert-badge {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            background: var(--instagram-gradient);
             color: white;
-            padding: 2rem 3rem;
+            padding: 3px;
             border-radius: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 1.5rem;
+            display: inline-block;
             box-shadow: 0 8px 30px var(--accent-glow);
             transition: all 0.3s ease;
         }
 
         .cert-badge:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.05);
             box-shadow: 0 12px 40px var(--accent-glow);
+        }
+
+        .cert-inner {
+            background: var(--bg-card);
+            padding: 2rem 3rem;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         .cert-icon {
@@ -414,11 +662,15 @@
         .cert-info h3 {
             font-size: 1.4rem;
             margin-bottom: 0.3rem;
+            background: var(--instagram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .cert-info p {
             font-size: 0.95rem;
-            opacity: 0.9;
+            color: var(--text-secondary);
         }
 
         /* Education */
@@ -438,6 +690,7 @@
         .education-card:hover {
             border-color: var(--accent-primary);
             box-shadow: 0 8px 30px var(--accent-glow);
+            transform: translateX(10px);
         }
 
         .education-card h3 {
@@ -470,6 +723,23 @@
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
         }
 
         .contact-card:hover {
@@ -488,6 +758,8 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-card a:hover {
@@ -513,20 +785,54 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.8rem; }
             .hero-content .subtitle { font-size: 1.4rem; }
             .hero-content .description { font-size: 1rem; }
             .section-title { font-size: 2rem; }
-            .nav-links { display: none; }
+            .nav-links a { display: none; }
             .timeline { padding-left: 2rem; }
             .timeline-item { padding-left: 1.5rem; }
             .timeline-item::before { left: -2.5rem; }
             .about-content { padding: 2rem; }
+            .hero-avatar { width: 140px; height: 140px; }
+            .avatar-content { font-size: 3rem; }
         }
 
-        /* Animations */
+        /* Fade In Animation */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -540,10 +846,13 @@
     </style>
 </head>
 <body>
+    <!-- Animated Particles -->
+    <div class="particles" id="particles"></div>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">Advait Vaidya</div>
+            <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Advait Vaidya</div>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
@@ -558,6 +867,13 @@
     <div class="container">
         <section class="hero">
             <div class="hero-content">
+                <div class="hero-avatar">
+                    <div class="avatar-ring">
+                        <div class="avatar-inner">
+                            <div class="avatar-content">AV</div>
+                        </div>
+                    </div>
+                </div>
                 <h1>Hi, I'm Advait 👋</h1>
                 <p class="subtitle">DevOps Engineer</p>
                 <p class="description">I build and optimize cloud infrastructure, automate deployments, and ensure systems run smoothly. With 4 years of experience in AWS, Kubernetes, and CI/CD pipelines, I help teams deliver faster and more reliably.</p>
@@ -585,7 +901,7 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- Skills Section with Progress Bars -->
         <section id="skills" class="fade-in">
             <div class="section-header">
                 <h2 class="section-title">Technical Skills</h2>
@@ -593,59 +909,126 @@
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <h3><span>☁️</span> Cloud Platforms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">AWS EC2</span>
-                        <span class="skill-tag">S3</span>
-                        <span class="skill-tag">IAM</span>
-                        <span class="skill-tag">Route 53</span>
-                        <span class="skill-tag">VPC</span>
-                        <span class="skill-tag">CloudWatch</span>
-                        <span class="skill-tag">Auto Scaling</span>
+                    <h3><span>☁️</span> Cloud & Infrastructure</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">AWS Services</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Terraform</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Linux Administration</span>
+                            <span class="skill-level">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 95%"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="skill-card">
-                    <h3><span>🛠️</span> DevOps Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">TeamCity</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Bitbucket</span>
-                        <span class="skill-tag">JIRA</span>
-                        <span class="skill-tag">Chef</span>
+                    <h3><span>🐳</span> Containers & Orchestration</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Docker</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Kubernetes</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Microservices</span>
+                            <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 80%"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="skill-card">
-                    <h3><span>🐳</span> Containers</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Docker Hub</span>
+                    <h3><span>🛠️</span> CI/CD & Automation</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Jenkins</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Git & Bitbucket</span>
+                            <span class="skill-level">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Shell Scripting</span>
+                            <span class="skill-level">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 88%"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="skill-card">
-                    <h3><span>💻</span> Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Shell Scripting</span>
-                        <span class="skill-tag">YAML</span>
-                        <span class="skill-tag">Python</span>
+                    <h3><span>📊</span> Monitoring & Observability</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">CloudWatch</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 90%"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-card">
-                    <h3><span>🖥️</span> Systems</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Ubuntu</span>
-                        <span class="skill-tag">CentOS</span>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Grafana</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 85%"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-card">
-                    <h3><span>📊</span> Monitoring</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">Grafana</span>
-                        <span class="skill-tag">App Dynamics</span>
-                        <span class="skill-tag">Oracle SQL</span>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">App Dynamics</span>
+                            <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--progress: 80%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -713,11 +1096,13 @@
             </div>
             <div class="cert-container">
                 <div class="cert-badge">
-                    <div class="cert-icon">🏆</div>
-                    <div class="cert-info">
-                        <h3>AWS Certified Cloud Practitioner</h3>
-                        <p>Valid: July 2023 – July 2026</p>
-                        <p style="font-size: 0.85rem; margin-top: 0.3rem;">Validation: 1VS1J4G28MRE1134</p>
+                    <div class="cert-inner">
+                        <div class="cert-icon">🏆</div>
+                        <div class="cert-info">
+                            <h3>AWS Certified Cloud Practitioner</h3>
+                            <p>Valid: July 2023 – July 2026</p>
+                            <p style="font-size: 0.85rem; margin-top: 0.3rem;">Validation: 1VS1J4G28MRE1134</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -776,7 +1161,27 @@
         <p>Built with passion for DevOps excellence ⚡</p>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
     <script>
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
         // Theme Toggle
         function toggleTheme() {
             const html = document.documentElement;
@@ -790,6 +1195,24 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Scroll to top button
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
         // Scroll Animation
         const observerOptions = {
             threshold: 0.1,
@@ -800,11 +1223,20 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    
+                    // Animate skill bars
+                    if (entry.target.classList.contains('skill-card')) {
+                        const progressBars = entry.target.querySelectorAll('.skill-progress');
+                        progressBars.forEach(bar => {
+                            bar.style.width = bar.style.getPropertyValue('--progress');
+                        });
+                    }
                 }
             });
         }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        document.querySelectorAll('.skill-card').forEach(el => observer.observe(el));
 
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
