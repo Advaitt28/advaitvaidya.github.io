@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advait Vaidya - DevOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: rgba(255, 107, 53, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #f7931e;
+            --accent-tertiary: #ff9a56;
+            --border-color: rgba(255, 107, 53, 0.2);
+            --shadow: rgba(255, 107, 53, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #fef6f0;
+            --bg-secondary: #fff5eb;
+            --bg-card: rgba(255, 107, 53, 0.08);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #f7931e;
+            --accent-tertiary: #ff9a56;
+            --border-color: rgba(255, 107, 53, 0.3);
+            --shadow: rgba(255, 107, 53, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-primary);
+            animation: float 25s infinite;
+            border-radius: 50%;
+        }
+
+        .bg-animation span:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .bg-animation span:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .bg-animation span:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .bg-animation span:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .bg-animation span:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .bg-animation span:nth-child(6) { left: 60%; animation-delay: 10s; }
+        .bg-animation span:nth-child(7) { left: 70%; animation-delay: 12s; }
+        .bg-animation span:nth-child(8) { left: 80%; animation-delay: 14s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); }
+            50% { transform: translateY(-100vh) scale(1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: var(--bg-secondary);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px var(--shadow);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 50px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        /* Section */
+        section {
+            margin: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--shadow), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow);
+            border-color: var(--accent-primary);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.3rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 20px var(--shadow);
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .timeline-date {
+            color: var(--accent-primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-content li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-content li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        /* Certification Badge */
+        .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .cert-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px var(--shadow);
+        }
+
+        .contact-item a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.5rem; }
+            .section-title { font-size: 2rem; }
+            .timeline { padding-left: 30px; }
+            .timeline::before { left: 10px; }
+            .timeline-item::before { left: -28px; }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">AV</div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="container">
+        <section class="hero">
+            <h1>ADVAIT VAIDYA</h1>
+            <h2>DevOps Engineer</h2>
+            <p>Detail-oriented and results-driven DevOps Engineer with close to 4 years of progressive experience in DevOps practices, cloud infrastructure, and automation. Specialized in AWS, CI/CD pipelines, Kubernetes, and infrastructure optimization.</p>
+            <div class="cta-buttons">
+                <a href="https://www.linkedin.com/in/advait-vaidya" class="btn btn-primary" target="_blank">LinkedIn</a>
+                <a href="mailto:advaituday@gmail.com" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="fade-in">
+            <h2 class="section-title">About Me</h2>
+            <div class="card">
+                <p>I'm a passionate DevOps Engineer currently working at Amdocs, with extensive experience in managing cloud infrastructure, automating deployments, and optimizing system performance. My expertise spans across AWS services, containerization with Docker and Kubernetes, CI/CD pipeline management with Jenkins, and infrastructure as code using Terraform.</p>
+                <p style="margin-top: 1rem;">I specialize in improving system reliability, reducing operational costs through automation, and driving continuous delivery through effective cross-functional collaboration. My background in mechanical engineering combined with my DevOps expertise gives me a unique perspective on problem-solving and system optimization.</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="fade-in">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>☁️ Cloud Platforms</h3>
+                    <div>
+                        <span class="skill-tag">AWS EC2</span>
+                        <span class="skill-tag">S3</span>
+                        <span class="skill-tag">IAM</span>
+                        <span class="skill-tag">Route 53</span>
+                        <span class="skill-tag">VPC</span>
+                        <span class="skill-tag">CloudWatch</span>
+                        <span class="skill-tag">Auto Scaling</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🛠️ DevOps Tools</h3>
+                    <div>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">TeamCity</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Bitbucket</span>
+                        <span class="skill-tag">JIRA</span>
+                        <span class="skill-tag">Chef</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🐳 Containers & Orchestration</h3>
+                    <div>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Docker Hub</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>💻 Languages & Scripting</h3>
+                    <div>
+                        <span class="skill-tag">Shell Scripting</span>
+                        <span class="skill-tag">YAML</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🖥️ Operating Systems</h3>
+                    <div>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Ubuntu</span>
+                        <span class="skill-tag">CentOS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🗄️ Infrastructure & Monitoring</h3>
+                    <div>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">App Dynamics</span>
+                        <span class="skill-tag">Oracle SQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="fade-in">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sept 2025 – Present</div>
+                        <h3>Technical and Business Operations Analyst</h3>
+                        <h4>Amdocs, Pune, India</h4>
+                        <ul>
+                            <li>Provide first-level support for Linux servers and cloud infrastructure</li>
+                            <li>Monitor system health, performance, and availability using CloudWatch, App Dynamics, and Orion</li>
+                            <li>Handle incident and service requests, analyze issues, and escalate to higher support levels</li>
+                            <li>Perform Linux administration tasks including log analysis, disk management, and process monitoring</li>
+                            <li>Support backup, restore, and patch management activities</li>
+                            <li>Maintain detailed documentation for incidents, configurations, and resolutions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Nov 2022 – Sept 2025</div>
+                        <h3>DevOps Engineer</h3>
+                        <h4>Capgemini, Pune, India</h4>
+                        <ul>
+                            <li>Managed Linux-based infrastructure with server configuration, patching, and package management</li>
+                            <li>Built and optimized CI/CD pipelines using Jenkins for automated builds and deployments</li>
+                            <li>Deployed microservices on Kubernetes clusters for increased scalability across multiple regions</li>
+                            <li>Managed Terraform state files using S3 backends and integrated with CI/CD pipelines</li>
+                            <li>Implemented AWS Auto Scaling and cost optimization strategies</li>
+                            <li>Used Grafana for monitoring infrastructure health and performance</li>
+                            <li>Created comprehensive documentation including SOPs, runbooks, and deployment workflows</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sept 2021 – July 2022</div>
+                        <h3>Business Analyst</h3>
+                        <h4>Aceking Technologies, Hyderabad, India</h4>
+                        <ul>
+                            <li>Conducted detailed analyses of manufacturing processes to identify inefficiencies</li>
+                            <li>Maintained documentation including process maps, workflow diagrams, and BRDs</li>
+                            <li>Generated reports on KPIs and presented data-driven insights to management</li>
+                            <li>Participated in continuous improvement initiatives using Lean and Six Sigma principles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="fade-in">
+            <h2 class="section-title">Certifications</h2>
+            <div style="text-align: center;">
+                <div class="cert-badge">
+                    <span>🏆</span>
+                    <div>
+                        <div>AWS Certified Cloud Practitioner</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9;">Valid: July 2023 – July 2026</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Validation: 1VS1J4G28MRE1134</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="fade-in">
+            <h2 class="section-title">Education</h2>
+            <div class="card">
+                <h3>Bachelor of Engineering in Mechanical</h3>
+                <h4 style="color: var(--accent-primary);">Savitribai Phule Pune University, India</h4>
+                <p style="color: var(--text-secondary);">Aug 2017 – June 2021 | CGPA: 7.46</p>
+            </div>
+            <div class="card">
+                <h3>HSC (CBSE)</h3>
+                <h4 style="color: var(--accent-primary);">School of Scholars, Nagpur, India</h4>
+                <p style="color: var(--text-secondary);">May 2016 – June 2017 | CGPA: 6.5</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <a href="mailto:advaituday@gmail.com">advaituday@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <a href="tel:+918857950365">+91-8857950365</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <a href="https://www.linkedin.com/in/advait-vaidya" target="_blank">LinkedIn Profile</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <span style="color: var(--text-primary);">Kothrud, Pune, Maharashtra</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Advait Vaidya. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; color: var(--text-secondary);">Built with passion for DevOps excellence</p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
